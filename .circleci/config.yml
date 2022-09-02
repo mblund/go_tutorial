@@ -25,7 +25,7 @@ jobs:
             true
       - restore_cache:
           keys:
-            - go-mod-v4-{{ checksum "hello/go.sum" }}
+            - go-mod-v5-{{ checksum "hello/go.sum" }}
       - run:
           name: check cache path after
           command: ls ~/go/pkg/mod || true
@@ -33,7 +33,7 @@ jobs:
           name: Install Dependencies
           command: make -C hello download
       - save_cache:
-          key: go-mod-v4-{{ checksum "hello/go.sum" }}
+          key: go-mod-v5-{{ checksum "hello/go.sum" }}
           paths:
             - ~/go/pkg/mod
       - run:
