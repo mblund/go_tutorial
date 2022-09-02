@@ -13,9 +13,15 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - run:
+          name: check cache path before
+          command: ls /go/pkg/mod
       - restore_cache:
           keys:
             - go-mod-v4-{{ checksum "hello/go.sum" }}
+      - run:
+          name: check cache path after
+          command: ls /go/pkg/mod
       - run:
           name: Install Dependencies
           command: make -C hello download
