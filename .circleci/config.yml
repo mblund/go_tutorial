@@ -22,7 +22,7 @@ jobs:
             ls ~
             ls ~/repo
             ls ~/go/pkg/mod
-            true:
+            true
       - restore_cache:
           keys:
             - go-mod-v4-{{ checksum "hello/go.sum" }}
