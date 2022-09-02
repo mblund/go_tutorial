@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math/rand"
+	"rsc.io/quote"
 	"time"
 )
 
@@ -15,6 +16,7 @@ func Hello(name string) (string, error) {
 
 	//Return a greeting that embeds the name in a message.
 	//var message string
+
 	message := fmt.Sprintf(randomFormat(), name)
 	return message, nil
 }
@@ -37,10 +39,12 @@ func init() {
 }
 
 func randomFormat() string {
+	message := quote.Go()
+
 	formats := []string{
-		"Hi, %v. Welcome!",
-		"Great to see you, %v!",
-		"Hail, %v! Well met!",
+		"Hi, %v. Welcome! " + message,
+		"Great to see you, %v! " + message,
+		"Hail, %v! Well met! " + message,
 	}
 
 	return formats[rand.Intn(len(formats))]
