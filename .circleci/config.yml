@@ -15,6 +15,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: check environment
+          command: |
+            pwd
+            ls 
+            ls ~
+            ls ~/repo
+            true
+      - run:
           name: check cache path before
           command: ls /go/pkg/mod || true
       - restore_cache:
@@ -38,6 +46,14 @@ jobs:
             gotestsum --junitfile /tmp/test-reports/unit-tests.xml
       - store_test_results:
           path: /tmp/test-reports
+      - run:
+          name: check environment
+          command: |
+            pwd
+            ls 
+            ls ~
+            ls ~/repo
+            true  
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
