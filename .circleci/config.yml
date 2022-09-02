@@ -21,7 +21,7 @@ jobs:
             ls 
             ls ~
             ls ~/repo
-            ls ~/go/pkg/mod
+            ls ~/go/pkg/mod || true
             true
       - restore_cache:
           keys:
@@ -51,7 +51,7 @@ jobs:
             ls 
             ls ~
             ls ~/repo
-            ls ~/go/pkg/mod
+            ls ~/go/pkg/mod || true
             true  
 
 # Invoke jobs via workflows
