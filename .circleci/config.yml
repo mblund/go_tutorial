@@ -15,13 +15,13 @@ jobs:
       - checkout
       - run:
           name: check cache path before
-          command: ls /go/pkg/mod
+          command: ls /go/pkg/mod || true
       - restore_cache:
           keys:
             - go-mod-v4-{{ checksum "hello/go.sum" }}
       - run:
           name: check cache path after
-          command: ls /go/pkg/mod
+          command: ls /go/pkg/mod || true
       - run:
           name: Install Dependencies
           command: make -C hello download
