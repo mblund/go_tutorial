@@ -21,16 +21,14 @@ jobs:
             ls 
             ls ~
             ls ~/repo
-            true
-      - run:
-          name: check cache path before
-          command: ls /go/pkg/mod || true
+            ls ~/go/pkg/mod
+            true:
       - restore_cache:
           keys:
             - go-mod-v4-{{ checksum "hello/go.sum" }}
       - run:
           name: check cache path after
-          command: ls /go/pkg/mod || true
+          command: ls ~/go/pkg/mod || true
       - run:
           name: Install Dependencies
           command: make -C hello download
@@ -53,6 +51,7 @@ jobs:
             ls 
             ls ~
             ls ~/repo
+            ls ~/go/pkg/mod
             true  
 
 # Invoke jobs via workflows
