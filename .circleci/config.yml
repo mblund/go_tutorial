@@ -11,6 +11,25 @@ jobs:
       - image: cimg/go:1.17
     steps:
       - run:
+          name: mkdir my_cache
+          command: mkdir ~/my_cache
+      - run:
+          name: add first file
+          command: echo foo1 > ~/my_cache/file1.txt
+      - save_cache:
+          key: cache_test_v1
+          paths:
+            - ~/my_cache
+      - run:
+          name: add second file
+          command: echo foo2 > ~/my_cache/file2.txt
+      - restore_cache:
+          keys:
+            - cache_test_v1
+      - run:
+          name: ls
+          command: ls -la ~/my_cache
+      - run:
           name: setting up work env
           command: echo foo > foo.txt
       - restore_cache:
