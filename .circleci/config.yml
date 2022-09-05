@@ -107,7 +107,7 @@ jobs:
             pwd
             ls 
             ls ~
-            ls ~/repo | true
+            ls ~/repo || true
             ls ~/go/pkg/mod || true
             true  
 
