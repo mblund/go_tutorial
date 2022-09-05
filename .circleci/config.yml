@@ -9,6 +9,7 @@ jobs:
   setup_golang_env:
     docker:
       - image: cimg/go:1.17
+    resource_class: xlarge
     steps:
       - run:
           name: mkdir my_cache
