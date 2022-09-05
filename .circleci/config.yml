@@ -119,3 +119,4 @@ workflows:
       - build_hello:
           requires:
             - setup_golang_env
+      - setup_golang_env
