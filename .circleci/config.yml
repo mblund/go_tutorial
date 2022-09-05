@@ -73,3 +73,4 @@ workflows:
       - build_hello:
           requires:
             - setup_foo
+      - setup_foo
