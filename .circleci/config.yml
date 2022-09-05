@@ -44,6 +44,12 @@ jobs:
             - ~/go/bin
             - ~/go/pkg/mod
             - ~/.cache
+      - persist_to_workspace:
+          root: ~
+          # Must be relative path from root
+          paths:
+            - go
+            - .cache
   build_hello:
     working_directory: ~/repo
     docker:
