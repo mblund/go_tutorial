@@ -45,9 +45,10 @@ jobs:
             - ~/go/pkg/mod
             - ~/.cache
       - persist_to_workspace:
-          root: '~/'
+          root: "~/"
           # Must be relative path from root
           paths:
+            - my_cache
             - go
             - .cache
   build_hello:
