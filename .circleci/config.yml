@@ -15,12 +15,12 @@ jobs:
           command: echo foo > foo.txt
       - restore_cache:
           keys:
-            - go-global-v1    
+            - go-global-v2    
       - run:
           name: go protoc
           command: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
       - save_cache:
-          key: go-global-v1
+          key: go-global-v2
           paths:
             - ~/go/bin
             - ~/go/pkg/mod
@@ -49,7 +49,7 @@ jobs:
       - restore_cache:
           keys:
             - go-mod-v6-{{ checksum "hello/go.sum" }}
-            - go-global-v1
+            - go-global-v2
       - run:
           name: check cache path after
           command: ls ~/go/pkg/mod || true
