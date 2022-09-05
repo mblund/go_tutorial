@@ -52,7 +52,6 @@ jobs:
             - go
             - .cache
   build_hello:
-    working_directory: ~/repo
     docker:
       - image: cimg/go:1.17
     # Add steps to the job
@@ -72,7 +71,7 @@ jobs:
             pwd
             ls 
             ls ~
-            ls ~/repo
+            ls ~/repo || true
             ls ~/go/pkg/mod || true
             true
       - restore_cache:
