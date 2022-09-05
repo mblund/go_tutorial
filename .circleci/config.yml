@@ -54,6 +54,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: ls
+          command: ls -la ~/my_cache || true
+      - run:
           name: checking env.
           command: cat foo.txt || true
       - run:
