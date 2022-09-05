@@ -13,6 +13,15 @@ jobs:
       - run:
           name: setting up work env
           command: echo foo > foo.txt
+      - run:
+          name: go protoc
+          command: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+      - save_cache:
+          key: go-global-v1
+          paths:
+            - ~/go/bin
+            - ~/go/pkg/mod
+            - ~/.cache
   build_hello:
     docker:
       - image: cimg/go:1.17
@@ -23,7 +32,7 @@ jobs:
       - checkout
       - run:
           name: checking env.
-          command: less foo.txt
+          command: cat foo.txt || true
       - run:
           name: check environment
           command: |
@@ -35,7 +44,8 @@ jobs:
             true
       - restore_cache:
           keys:
-            - go-mod-v5-{{ checksum "hello/go.sum" }}
+            - go-mod-v6-{{ checksum "hello/go.sum" }}
+            - go-global-v1
       - run:
           name: check cache path after
           command: ls ~/go/pkg/mod || true
@@ -43,9 +53,10 @@ jobs:
           name: Install Dependencies
           command: make -C hello download
       - save_cache:
-          key: go-mod-v5-{{ checksum "hello/go.sum" }}
+          key: go-mod-v6-{{ checksum "hello/go.sum" }}
           paths:
             - ~/go/pkg/mod
+            - ~/.cache 
       - run:
           name: Run tests
           command: |
