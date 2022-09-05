@@ -13,6 +13,9 @@ jobs:
       - run:
           name: setting up work env
           command: echo foo > foo.txt
+      - restore_cache:
+          keys:
+            - go-global-v1    
       - run:
           name: go protoc
           command: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
@@ -23,6 +26,7 @@ jobs:
             - ~/go/pkg/mod
             - ~/.cache
   build_hello:
+    working_directory: ~/repo
     docker:
       - image: cimg/go:1.17
     # Add steps to the job
